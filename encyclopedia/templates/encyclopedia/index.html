@@ -8,9 +8,9 @@
     <h1>All Pages</h1>
 
     <ul>
-        {% for entry in entries %}
+        {% for single_entry in entries %}
             <li>
-                {{ entry }}
+                <a href="entry/{{ single_entry }}" style='text-decoration: none;'>{{ single_entry }}</a>  
             </li>
         {% endfor %}
     </ul>
