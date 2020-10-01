@@ -1,4 +1,5 @@
 {% extends "encyclopedia/layout.html" %}
+{% load markdownify %}
 
 {% block title %}
     {{ page_title }}
@@ -6,6 +7,6 @@
 
 {% block body %}
 
-    {{ content }}
+    {{ content | markdownify}}
 
 {% endblock %}
