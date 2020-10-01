@@ -13,7 +13,7 @@
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
                 <form action="/entry">
-                    <input class="search" type="text" name ='/'  placeholder="Search Encyclopedia">
+                    <input class="search" type="text" placeholder="Search Encyclopedia">
                 </form>
                 <div>
                     <a href="{% url 'index' %}">Home</a>
@@ -22,7 +22,7 @@
                     Create New Page
                 </div>
                 <div>
-                    Random Page
+                    <a href="{{ random_entry_ref }}">Random Page</a>
                 </div>
                 {% block nav %}
                 {% endblock %}
