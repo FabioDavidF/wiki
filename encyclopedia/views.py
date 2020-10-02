@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from . import util
 from random import randint
 from django.http import HttpResponse
+from pathlib import Path
 
 
 lista = util.list_entries()
@@ -34,3 +35,11 @@ def search(request):
 
 def create(request):
     return render(request, "encyclopedia/create.html")
+
+def create_file(request):
+    title = request.POST.get('title_input')
+    content = request.POST.get('content_input')
+    entry = open(f'{Path(".").parent}/entries/{title}.md', 'x')
+    entry.write(f'# {title} \n')
+    entry.write(f'content')
+    return redirect(f'wiki/{title}/')
