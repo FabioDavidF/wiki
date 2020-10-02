@@ -7,7 +7,8 @@ encyclopedia_list = util.list_entries()
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("entry/<title>/".lower(), views.encyclopedia, name='entry_title'),
+    path("wiki/<title>/".lower(), views.encyclopedia, name='entry_title'),
+    path('search', views.search, name='search_processing')
 ]
 
 

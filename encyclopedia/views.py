@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import util
 from random import randint
+from django.http import HttpResponse
 
 
 lista = util.list_entries()
@@ -16,7 +17,7 @@ def encyclopedia(request, title):
     content = util.get_entry(title)
     if content == None:
         return render(request, 'encyclopedia/encyclopedia.html', {
-            'title': 'Entry not found',
+            'page_title': 'Entry not found',
             'header': 'Entry not found',
             'content': 'Sorry, that entry does not exist yet',
             'random_entry_ref': f'../{lista[randint(0, len(lista) - 1)]}'
@@ -26,3 +27,7 @@ def encyclopedia(request, title):
         'content': content,
         'random_entry_ref': f'../{lista[randint(0, len(lista) - 1)]}'
     })
+
+def search(request):
+    info = request.POST.get('q')
+    return redirect(f'wiki/{info}/')
