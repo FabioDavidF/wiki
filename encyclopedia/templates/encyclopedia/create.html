@@ -6,15 +6,13 @@
 
 {% block body %}
     <h1>Create a wiki</h1>
-    <div>
-        <form action="{%  url 'create_file' %}" class="wiki_input" method='post'>
-            {% csrf_token %}
-            <h3>Title:</h3>
-            <input type="text" name='title_input', placeholder="Type in the title">
-            <h3>Content: </h3>
-            <textarea name="content" id="content_input" cols="30" rows="8" style='height: 70vh;'></textarea>
-            <input type="submit" style='position: relative; top: 4vh; right: 67vw;'>
-        </form>
-    </div>
-     
+    <form action="{%  url 'create_file' %}" class="wiki_input" method='post' id='form'>
+        {% csrf_token %}
+        <h3>Title:</h3>
+        <input type="text" name='title_input' placeholder="Type in the title">
+        <h3>Content: </h3>
+        <textarea id="cinput" name='content_input' form='form' cols="30" rows="8" style='height: 70vh;'></textarea>
+        <input type="submit" style='position: relative; top: 4vh; right: 67vw;'>
+    </form>
+    
 {% endblock %}

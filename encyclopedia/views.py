@@ -37,9 +37,11 @@ def create(request):
     return render(request, "encyclopedia/create.html")
 
 def create_file(request):
+    if request.method != "POST":
+        raise Http404
     title = request.POST.get('title_input')
     content = request.POST.get('content_input')
     entry = open(f'{Path(".").parent}/entries/{title}.md', 'x')
     entry.write(f'# {title} \n')
-    entry.write(f'content')
+    entry.write(f'{content}')
     return redirect(f'wiki/{title}/')
