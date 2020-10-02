@@ -9,7 +9,7 @@ lista = util.list_entries()
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries(),
-        'random_entry_ref': f'/entry/{lista[randint(0, len(lista) - 1)]}',
+        'random_entry_ref': f'/wiki/{lista[randint(0, len(lista) - 1)]}',
         
     })
 
@@ -31,3 +31,6 @@ def encyclopedia(request, title):
 def search(request):
     info = request.POST.get('q')
     return redirect(f'wiki/{info}/')
+
+def create(request):
+    return render(request, "encyclopedia/create.html")

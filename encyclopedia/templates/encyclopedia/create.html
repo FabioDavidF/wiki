@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create Wiki
+{% endblock %}
+
+{% block body %}
+    <h1>Create a wiki</h1>
+    <div>
+        <form action="" class="wiki_input">
+            <h3>Title:</h3>
+            <input type="text" name='title_input', placeholder="Type in the title">
+            <h3>Content: </h3>
+            <textarea name="content" id="content_input" cols="30" rows="8" style='height: 70vh;'></textarea>
+            <input type="submit" style='position: relative; top: 5vh; right: 66.5vw;'>
+        </form>
+    </div>
+     
+{% endblock %}
