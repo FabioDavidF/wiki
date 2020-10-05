@@ -2,11 +2,12 @@
 {% load markdownify %}
 
 {% block title %}
-    {{ page_title }}
+    {{ title }}
 {% endblock %}
 
 {% block body %}
 
     {{ content | markdownify}}
+    <a href="{% url 'edit' title=title%}">Edit entry</a>
 
 {% endblock %}
