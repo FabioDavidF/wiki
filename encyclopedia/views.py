@@ -31,8 +31,15 @@ def encyclopedia(request, title):
     })
 
 def search(request):
-    info = request.POST.get('q')
-    return redirect(f'wiki/{info}/')
+    info = request.POST.get('q').capitalize()
+    if info in lista:
+        url = reverse('entry_title', kwargs={'title':info})
+        return redirect(url)
+    else:
+        return render(request, 'encyclopedia/search_page.html', {
+            'query': info,
+            'lista': lista
+        })
 
 def create(request):
     return render(request, "encyclopedia/create.html", {
@@ -45,13 +52,13 @@ def create_file(request):
     title = request.POST.get('title_input')
     content = request.POST.get('content_input')
     try:
-        entry = open(f'{Path(".").parent}/entries/{title}.md', 'x')
+        entry = open(f'{Path(".").parent}/entries/{title.capitalize()}.md', 'x')
         entry.write(f'# {title} \n')
         entry.write(f'{content}')
         entry.close()
         return redirect(f'wiki/{title}/')
     except:
-        raise Http404
+        return HttpResponse('<h1>ERROR! Entry with that name already exists</h1>')
 
 def edit(request, title):
     content = util.get_entry(title)
